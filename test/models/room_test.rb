@@ -25,22 +25,37 @@ class RoomTest < ActiveSupport::TestCase
   end
 
   test "private_room? helper is correct" do
-    room = Room.new(public_room: false, short_url: "Hello")
+    room = Room.new(public_room: false)
 
     assert room.private_room?
   end
 
-  test "locked cannot be nil" do
-    room = Room.new(locked: nil, short_url: "Hello")
+  test "room creates short_url if not given one" do
+    room = Room.new
 
-    refute room.save
-    assert room.errors[:public_room]
+    assert room.save
+    refute_equal room.short_url, nil
   end
 
-  test "public_room cannot be nil" do
-    room = Room.new(public_room: nil, short_url: "Hello")
+  test "rooms are not given same short_url" do
+    room1 = Room.new
+    room2 = Room.new
 
-    refute room.save
-    assert room.errors[:public_room]
+    assert (room1.save && room2.save)
+    refute_equal room1.short_url, room2.short_url
+  end
+
+  test "locked is given a default value" do
+    room1 = Room.new
+
+    assert room1.save
+    refute_equal room1.locked, nil
+  end
+
+  test "public_room is given a default value" do
+    room1 = Room.new
+
+    assert room1.save
+    refute_equal room1.public_room, nil
   end
 end

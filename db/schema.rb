@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170105035542) do
+ActiveRecord::Schema.define(version: 20170106000146) do
 
   create_table "rooms", force: :cascade do |t|
     t.boolean  "public_room", default: true,  null: false
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20170105035542) do
     t.string   "short_url",                   null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.index ["short_url"], name: "index_rooms_on_short_url"
   end
 
   create_table "users", force: :cascade do |t|
@@ -26,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170105035542) do
     t.datetime "last_active", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["room_id"], name: "index_users_on_room_id"
   end
 
 end
