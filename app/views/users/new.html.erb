@@ -1,0 +1,6 @@
+Choose a username:
+
+<%= form_for @user, url: users_path, html: {class: "class"} do |f| %>
+  <%= f.text_field :name %>
+  <%= f.submit "Set Username" %>
+<% end %>
