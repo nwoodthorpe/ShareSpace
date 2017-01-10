@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root 'static#home'
 
-  resources :rooms, only: [:new]
+  resources :rooms, only: [:create]
 
   resources :users, only: [:new, :create]
 end

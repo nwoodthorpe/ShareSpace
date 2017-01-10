@@ -25,7 +25,7 @@ class RoomTest < ActiveSupport::TestCase
   end
 
   test "private_room? helper is correct" do
-    room = Room.new(public_room: false)
+    room = Room.new(public_room: false, password: "password123")
 
     assert room.private_room?
   end
@@ -46,16 +46,50 @@ class RoomTest < ActiveSupport::TestCase
   end
 
   test "locked is given a default value" do
-    room1 = Room.new
+    room = Room.new
 
-    assert room1.save
-    refute_equal room1.locked, nil
+    assert room.save
+    refute_equal room.locked, nil
   end
 
   test "public_room is given a default value" do
-    room1 = Room.new
+    room = Room.new
 
-    assert room1.save
-    refute_equal room1.public_room, nil
+    assert room.save
+    refute_equal room.public_room, nil
+  end
+
+  test "private room with no password is invalid" do
+    room = Room.new(public_room: false)
+
+    refute room.save
+    assert room.errors[:password]
+  end
+
+  test "public room with password has password ignored" do
+    room = Room.new(public_room: true, password: "password123")
+
+    assert room.save
+    assert_nil room.password
+  end
+
+  test "private room with password is valid" do
+    room = Room.new(public_room: false, password: "password123")
+
+    assert room.save
+  end
+
+  test "private room with short password is invalid" do
+    room = Room.new(public_room: false, password: "H")
+
+    refute room.save
+    assert room.errors[:password]
+  end
+
+  test "private room with long password is invalid" do
+    room = Room.new(public_room: false, password: "H"*101)
+
+    refute room.save
+    assert room.errors[:password]
   end
 end

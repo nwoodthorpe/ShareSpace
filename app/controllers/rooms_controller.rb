@@ -1,15 +1,21 @@
 class RoomsController < ApplicationController
-  before_action :require_user_session, only: [:new]
+  before_action :require_user_session, only: [:create]
 
-  def new
-    public_room = str_to_bool(params[:public_room])
+  def create
+    public_room = str_to_bool(user_params[:public_room])
 
     delete_room_if_last_user(current_user.room_id)
 
-    @room = Room.create(
+    @room = Room.new(
       public_room: public_room,
-      locked: false
+      locked: false,
+      password: user_params[:password]
     )
+
+    if !@room.save
+      flash[:error] = @room.errors.full_messages.join(', ')
+      redirect_to root_path and return
+    end
 
     @room.users << current_user
 
@@ -21,6 +27,10 @@ class RoomsController < ApplicationController
   end
 
   private
+
+  def user_params
+    params.permit(:public_room, :password)
+  end
 
   def require_user_session
     unless current_user
