@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170110052218) do
+ActiveRecord::Schema.define(version: 20170110175735) do
 
   create_table "rooms", force: :cascade do |t|
-    t.boolean  "public_room", default: true,  null: false
-    t.boolean  "locked",      default: false, null: false
-    t.string   "short_url",                   null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "password"
+    t.boolean  "public_room",        default: true,  null: false
+    t.boolean  "locked",             default: false, null: false
+    t.string   "short_url",                          null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "encrypted_password"
+    t.string   "salt"
     t.index ["short_url"], name: "index_rooms_on_short_url"
   end
 

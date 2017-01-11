@@ -1,16 +1,6 @@
 require 'test_helper'
 
 class RoomsControllerTest < ActionDispatch::IntegrationTest
-  def setup
-    init_user
-
-    post rooms_path(public_room: true)
-    @public_room = Room.last
-
-    post rooms_path(public_room: false, password: "password")
-    @private_room = Room.last
-  end
-
   test "POST to create redirects to new user path if user session not active" do
     post rooms_path
 
@@ -61,6 +51,16 @@ class RoomsControllerTest < ActionDispatch::IntegrationTest
     post rooms_path, params: {public_room: false, password: "123"}
 
     assert_equal flash[:error], "Password is too short (minimum is 6 characters)"
+  end
+
+  def setup_rooms
+    init_user
+
+    post rooms_path(public_room: true)
+    @public_room = Room.last
+
+    post rooms_path(public_room: false, password: "password")
+    @private_room = Room.last
   end
 
   def init_user

@@ -70,7 +70,7 @@ class RoomTest < ActiveSupport::TestCase
     room = Room.new(public_room: true, password: "password123")
 
     assert room.save
-    assert_nil room.password
+    assert_nil room.encrypted_password
   end
 
   test "private room with password is valid" do
@@ -91,5 +91,20 @@ class RoomTest < ActiveSupport::TestCase
 
     refute room.save
     assert room.errors[:password]
+  end
+
+  test "plaintext password is not stored in encrypted password" do
+    room_password = "password"
+    room = Room.new(public_room: false, password: room_password)
+
+    assert room.save
+    refute_equal room.encrypted_password, room_password
+  end
+
+  test "plaintext password is not stored in password field" do
+    room = Room.new(public_room: false, password: "password")
+
+    assert room.save
+    assert_nil room.reload.password
   end
 end
