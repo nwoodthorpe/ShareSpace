@@ -1,10 +1,14 @@
 require 'random_alphanumeric'
 
 class Room < ApplicationRecord
-  has_many :users
-  before_save :assign_short_url, :set_default_values, :wipe_password_for_public
+  attr_accessor :password
 
-  validates :password, presence: true, length: { in: 6..100 }, if: :private_room?
+  has_many :users
+  before_save :assign_short_url, :set_default_values, :handle_password
+  validates :password,
+    presence: true,
+    length: { in: 6..100 },
+    if: :private_room?
 
   def private_room?
     !self[:public_room]
@@ -26,7 +30,12 @@ class Room < ApplicationRecord
     end
   end
 
-  def wipe_password_for_public
-    self[:password] = nil if self[:public_room]
+  def handle_password
+    unless self[:public_room]
+      self[:salt] = BCrypt::Engine.generate_salt
+      self[:encrypted_password] = BCrypt::Engine.hash_secret(password, self[:salt])
+    end
+
+    @password = nil
   end
 end
