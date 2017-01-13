@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   root 'static#home'
 
+  post '/:short_url/auth', to: 'rooms#authenticate', as: 'authenticate'
+  get '/:short_url', to: 'rooms#index', as: 'view_room'
+
   resources :rooms, only: [:create]
 
   resources :users, only: [:new, :create]
