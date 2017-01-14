@@ -1,5 +1,16 @@
 class RoomsController < ApplicationController
-  before_action :require_user_session, only: [:create]
+  before_action :require_user_session
+  before_action :find_room, only: [:index, :authenticate]
+
+  def index
+    if @room.private_room?
+      (ask_for_password and return) unless @room.users.include? current_user
+    else
+      @room.users << current_user
+    end
+
+    # TODO: Deal with passwords, public/private shit. Need to do last_request shit for private, redirect to a page for them to enter password
+  end
 
   def create
     public_room = str_to_bool(user_params[:public_room])
@@ -19,14 +30,14 @@ class RoomsController < ApplicationController
 
     @room.users << current_user
 
-    if public_room
-      render 'rooms/public'
-    else
-      render 'rooms/private'
-    end
+    render 'rooms/index'
   end
 
   private
+
+  def authenticate
+    render 'rooms/auth'
+  end
 
   def user_params
     params.permit(:public_room, :password)
@@ -39,11 +50,9 @@ class RoomsController < ApplicationController
     end
   end
 
-  def set_last_request
-    session[:last_request] = {
-      url: request.original_url,
-      params: params
-    }
+  def find_room
+    @url = params[:short_url]
+    @room = Room.find_by(short_url: @url) or not_found
   end
 
   def delete_room_if_last_user(room_id)
@@ -54,5 +63,9 @@ class RoomsController < ApplicationController
   def str_to_bool(str)
     return false if str == 'false'
     return true
+  end
+
+  def ask_for_password
+    render 'rooms/auth'
   end
 end

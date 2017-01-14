@@ -1,6 +1,20 @@
 require 'test_helper'
 
 class RoomsControllerTest < ActionDispatch::IntegrationTest
+  def setup
+    @public_room = Room.create(
+      public_room: true,
+      locked: false,
+    )
+
+    @private_password = 'password'
+    @private_room = Room.create(
+      public_room: false,
+      locked: false,
+      password: @private_password
+    )
+  end
+
   test "POST to create redirects to new user path if user session not active" do
     post rooms_path
 
@@ -53,14 +67,53 @@ class RoomsControllerTest < ActionDispatch::IntegrationTest
     assert_equal flash[:error], "Password is too short (minimum is 6 characters)"
   end
 
-  def setup_rooms
+  test "GET to index redirects to new user path if user not logged in" do
+    get view_room_path(short_url: @public_room.short_url)
+
+    assert_redirected_to new_user_path
+  end
+
+  test 'GET to index with invalid short_url returns 404' do
+    init_user
+    assert_raises(ActionController::RoutingError) { get view_room_path(short_url: "x") }
+  end
+
+  test 'GET to index with valid short_url returns success' do
+    init_user
+    get view_room_path(short_url: @public_room.short_url)
+
+    assert_response :success
+  end
+
+  test 'GET to index with valid short_url to public room renders index' do
+    @public_room.users << init_user
+    get view_room_path(short_url: @public_room.short_url)
+
+    assert_template :index
+  end
+
+  test 'GET to index with valid short_url to public room user is not in adds user' do
+    user = init_user
+    get view_room_path(short_url: @public_room.short_url)
+
+    assert_equal user.reload.room, @public_room
+  end
+
+  test 'GET to index with valid short_url to private room that user belongs to renders index' do
+    @private_room.users << init_user
+
+    get view_room_path(short_url: @private_room.short_url)
+
+    assert_response :success
+    assert_template :index
+  end
+
+  test 'GET to index with valid short_url to private room that user does not belong to renders auth' do
     init_user
 
-    post rooms_path(public_room: true)
-    @public_room = Room.last
+    get view_room_path(short_url: @private_room.short_url)
 
-    post rooms_path(public_room: false, password: "password")
-    @private_room = Room.last
+    assert_template 'rooms/auth'
   end
 
   def init_user
