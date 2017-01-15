@@ -50,7 +50,12 @@ class RoomsController < ApplicationController
 
   def find_room
     @url = params[:short_url]
-    @room = Room.find_by(short_url: @url) or not_found
+    @room = Room.find_by(short_url: @url)
+
+    unless @room
+      flash[:error] = "Could not find room: #{params[:short_url]}"
+      redirect_to root_path and return
+    end
   end
 
   def delete_room_if_last_user(room_id)
