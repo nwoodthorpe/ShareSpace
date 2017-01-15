@@ -1,0 +1,17 @@
+<% # Need to do plain form because of the way the route is setup :( %>
+<script>
+  function handleKeyPress(event){
+    console.log("HERE");
+    if (event.which == 13 || event.keyCode == 13) {
+        formSubmit();
+    }
+  }
+  function formSubmit(){
+    text = document.getElementById("short_url_text");
+    console.log(text);
+    window.location = "/" + text.value;
+  }
+</script>
+
+<input type="text" id="short_url_text" placeholder="Search for room:" onkeypress="handleKeyPress(event);"/>
+<input type="submit" value="Enter" onclick="formSubmit()"/>

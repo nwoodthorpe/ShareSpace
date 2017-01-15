@@ -8,8 +8,6 @@ class RoomsController < ApplicationController
     else
       @room.users << current_user
     end
-
-    # TODO: Deal with passwords, public/private shit. Need to do last_request shit for private, redirect to a page for them to enter password
   end
 
   def create
