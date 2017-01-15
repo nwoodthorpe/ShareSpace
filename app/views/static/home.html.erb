@@ -2,11 +2,11 @@ ShareSpace
 
 <br><br>
 
-<%= link_to "New Public Room", rooms_path(public_room: true) %>
+<%= link_to "New Public Room", rooms_path(public_room: true), method: :post %>
 
 <br><br>
 
-<%= link_to "New Private Room", rooms_path(public_room: false) %>
+<%= link_to "New Private Room", rooms_path(public_room: false), method: :post %>
 
 <br><br>
 
