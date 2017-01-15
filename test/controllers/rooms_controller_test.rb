@@ -73,9 +73,20 @@ class RoomsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_path
   end
 
-  test 'GET to index with invalid short_url returns 404' do
+  test 'GET to index with invalid short_url redirects to root' do
     init_user
-    assert_raises(ActionController::RoutingError) { get view_room_path(short_url: "x") }
+
+    get view_room_path(short_url: "x")
+
+    assert_redirected_to root_path
+  end
+
+  test 'GET to index with invalid short_url shows helpful flash message' do
+    init_user
+
+    get view_room_path(short_url: "x")
+
+    assert_equal flash[:error], "Could not find room: x"
   end
 
   test 'GET to index with valid short_url returns success' do
