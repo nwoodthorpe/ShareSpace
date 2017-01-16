@@ -28,7 +28,7 @@ class RoomsController < ApplicationController
 
     @room.users << current_user
 
-    render 'rooms/index'
+    redirect_to view_room_path(@room.short_url)
   end
 
   private

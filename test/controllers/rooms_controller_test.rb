@@ -21,11 +21,11 @@ class RoomsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_path
   end
 
-  test "POST to create returns success if user session exists" do
+  test "POST to create redirects to new room if user session exists" do
     init_user
     post rooms_path
 
-    assert_response :success
+    assert_redirected_to view_room_path(Room.last.short_url)
   end
 
   test "POST to create deletes users old room if last user" do
@@ -80,7 +80,7 @@ class RoomsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to root_path
   end
-
+  
   test 'GET to index with invalid short_url shows helpful flash message' do
     init_user
 
