@@ -4,6 +4,7 @@ class Room < ApplicationRecord
   attr_accessor :password
 
   has_many :users
+  has_many :messages
   before_save :assign_short_url, :set_default_values, :handle_password
   validates :password,
     presence: true,
