@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   belongs_to :room, optional: true
+  has_many :messages
 
   validates :name, presence: true, allow_blank: false
 

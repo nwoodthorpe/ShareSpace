@@ -4,7 +4,7 @@ class RoomsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @public_room = Room.create(
       public_room: true,
-      locked: false,
+      locked: false
     )
 
     @private_password = 'password'
@@ -80,7 +80,7 @@ class RoomsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to root_path
   end
-  
+
   test 'GET to index with invalid short_url shows helpful flash message' do
     init_user
 
