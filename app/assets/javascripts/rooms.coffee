@@ -1,14 +1,15 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-messages = $('#messages')
 
 @App = {}
 App.cable = ActionCable.createConsumer('cable')
 
 jQuery(document).on 'turbolinks:load', ->
-  messages = $('#messages')
-  if $('#messages').length > 0
+  messages = $('#message-container')
+  messages_loading = $('#message-container-loading')
+
+  if $('#message-container').length > 0
     App.global_chat = App.cable.subscriptions.create {
         channel: "RoomsChannel"
         room_id: messages.data('room-id')
@@ -16,12 +17,15 @@ jQuery(document).on 'turbolinks:load', ->
       connected: ->
         # Called when the subscription is ready for use on the server
         console.log('We are now connected')
+        messages.show()
+        messages_loading.hide()
 
       disconnected: ->
         # Called when the subscription has been terminated by the server
         console.log('We are now disconnected')
 
       received: (data) ->
+        console.log("RECIEVED DATA")
         messages.append data['message']
 
       send_message: (message, room_id) ->
