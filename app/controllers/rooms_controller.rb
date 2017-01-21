@@ -8,6 +8,11 @@ class RoomsController < ApplicationController
     else
       @room.users << current_user
     end
+
+    @user = current_user
+
+    @messages = @room.messages
+    @message = Message.new
   end
 
   def create

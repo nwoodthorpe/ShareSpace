@@ -6,13 +6,16 @@ git_source(:github) do |repo_name|
 end
 
 
-gem 'rails', '~> 5.0.1' # Rails
+gem 'rails' # Rails
 gem 'sqlite3' # Active Record database
 gem 'puma', '~> 3.0' # Web server
 gem 'sass-rails', '~> 5.0' # SCSS for stylesheets
 gem 'uglifier', '>= 1.3.0' # Asset compressor
 gem 'coffee-rails', '~> 4.2' # CoffeeScript
 gem 'turbolinks', '~> 5' # Turbolinks
+gem 'redis' # Volatile memory database
+
+gem 'actioncable' # Rails socket implementation
 
 gem 'jquery-rails' #JQuery
 
