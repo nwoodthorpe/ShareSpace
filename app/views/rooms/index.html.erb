@@ -1,1 +1,16 @@
 You are now in a room and authenticated
+
+</br></br>
+
+<form id='newMessage'>
+  <input type='text' id='message_content' placeholder='message'/>
+  <input type='submit' />
+</form>
+
+</br></br>
+
+Messages: </br>
+
+<div id="messages" data-room-id="<%= @room.id %>">
+  <%= render @room.messages %>
+</div>
