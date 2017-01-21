@@ -8,9 +8,13 @@ You are now in a room and authenticated
 </form>
 
 </br></br>
-
 Messages: </br>
 
-<div id="messages" data-room-id="<%= @room.id %>">
+
+<div id='message-container-loading'>
+  Loading...
+</div>
+
+<div id="message-container" data-room-id="<%= @room.id %>">
   <%= render @room.messages %>
 </div>
