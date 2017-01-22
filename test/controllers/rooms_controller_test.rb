@@ -103,6 +103,13 @@ class RoomsControllerTest < ActionDispatch::IntegrationTest
     assert_template :index
   end
 
+  test 'GET to index with valid short_url but wrong capitalization renders index' do
+    @public_room.users << init_user
+    get view_room_path(short_url: @public_room.short_url.downcase)
+
+    assert_template :index
+  end
+
   test 'GET to index with valid short_url to public room user is not in adds user' do
     user = init_user
     get view_room_path(short_url: @public_room.short_url)

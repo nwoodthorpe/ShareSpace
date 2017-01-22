@@ -54,7 +54,7 @@ class RoomsController < ApplicationController
   end
 
   def find_room
-    @url = params[:short_url]
+    @url = params[:short_url].upcase
     @room = Room.find_by(short_url: @url)
 
     unless @room
