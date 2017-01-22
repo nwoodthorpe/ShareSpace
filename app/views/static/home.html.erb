@@ -1,18 +1,121 @@
-ShareSpace
+<%= render 'header' %>
 
-<br><br>
+<div id='welcome-block'>
+  <div class='welcome-message'>
+    Welcome,
+  </div>
+  <div class='welcome-message'>
+    Please select a room type.
+  </div>
+</div>
 
-<%= link_to "New Public Room", rooms_path(public_room: true), method: :post %>
+<div class='tile-container'>
+  <div class='action-tile'>
+    <%= link_to "
+    <div class='tile-image unlocked-tile'></div>
+    <div class='tile-text'>
+      <span class='tile-text-span'>New Public Room</span>
+    </div>".html_safe, rooms_path(public_room: true), method: :post %>
+  </div>
+  <div class='action-tile'>
+    <a href='javascript:privateClick();'>
+      <div class='tile-image locked-tile' id='locked-tile'></div>
+    </a>
+    <div class='tile-image private-form' id='private-form'>
+      <a href='javascript:privateBack();' class='back-button'>
+        <div class='private-form-back-button'></div>
+      </a>
+      <div class='form-prompt'>
+        Enter a room password:
+      </div>
+      <%= form_tag rooms_path(public_room: false), { method: :post, class: 'form' } do %>
+        <div class='password-container'>
+          <%= password_field_tag :password, params[:password], { class: 'password-field' }%>
+        </div>
+        <div class='submit-container'>
+          <%= submit_tag 'Create', { class: 'submit-button' }%>
+        </div>
+      <% end %>
+    </div>
+    <div class='tile-text'>
+      <span id='private-text' class='tile-text-span'>New Private Room</span>
+    </div>
+  </div>
+  </a>
+  <div class='action-tile' >
+    <a href='javascript:joinClick();'>
+      <div id='join-tile' class='tile-image join-tile'></div>
+    </a>
+    <div id='join-form' class='tile-image join-form'>
+      <a href='javascript:joinBack();' class='back-button'>
+        <div class='private-form-back-button'></div>
+      </a>
+      <div class='form-prompt'>
+        Enter the room code:
+      </div>
+      <div class='form'>
+        <div class='password-container'>
+          <input type="text" id="short_url_text" placeholder="Search for room:" onkeypress="handleKeyPress(event);" class='password-field'/>
+        </div>
+        <div class='submit-container'>
+          <input type="submit" value="Join" onclick="formSubmit()" class='submit-button'/>
+        </div>
+      </div>
+    </div>
+    <div class='tile-text'>
+      <span id='join-text' class='tile-text-span'>Join Room</span>
+    </div>
+  </div>
+</div>
 
-<br><br>
+<script>
+  function privateClick(){
+    form = document.getElementById('private-form');
+    button = document.getElementById('locked-tile');
+    text = document.getElementById('private-text');
 
-<%= form_tag rooms_path(public_room: false), method: :post do %>
-    <%= password_field_tag :password, params[:password] %>
-    <%= submit_tag "New Private Room" %>
-<% end %>
+    button.style.display = 'none';
+    form.style.display = 'block';
+    text.style.display = 'none';
+  }
 
-<br><br>
+  function privateBack(){
+    form = document.getElementById('private-form');
+    button = document.getElementById('locked-tile');
+    text = document.getElementById('private-text');
 
-<%= render "search" %>
+    button.style.display = 'block';
+    form.style.display = 'none';
+    text.style.display = 'block';
+  }
 
-<% # The UI is gross right now, will tidy it up soon. %>
+  function joinClick(){
+    form = document.getElementById('join-form');
+    button = document.getElementById('join-tile');
+    text = document.getElementById('join-text');
+
+    button.style.display = 'none';
+    form.style.display = 'block';
+    text.style.display = 'none';
+  }
+
+  function joinBack(){
+    form = document.getElementById('join-form');
+    button = document.getElementById('join-tile');
+    text = document.getElementById('join-text');
+
+    button.style.display = 'block';
+    form.style.display = 'none';
+    text.style.display = 'block';
+  }
+
+  function handleKeyPress(event){
+    if (event.which == 13 || event.keyCode == 13) {
+        formSubmit();
+    }
+  }
+  function formSubmit(){
+    text = document.getElementById("short_url_text");
+    window.location = "/" + text.value;
+  }
+</script>
