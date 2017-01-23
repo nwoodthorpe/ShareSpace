@@ -2,6 +2,17 @@ class RoomsController < ApplicationController
   before_action :require_user_session
   before_action :find_room, only: [:index, :authenticate]
 
+  def authenticate
+    unless @room.is_password?(params[:password])
+      flash[:error] = 'Incorrect password'
+      ask_for_password and return
+    end
+
+    @room.users << current_user
+
+    redirect_to action: 'index'
+  end
+
   def index
     if @room.private_room?
       (ask_for_password and return) unless @room.users.include? current_user
@@ -37,10 +48,6 @@ class RoomsController < ApplicationController
   end
 
   private
-
-  def authenticate
-    render 'rooms/auth'
-  end
 
   def user_params
     params.permit(:public_room, :password)

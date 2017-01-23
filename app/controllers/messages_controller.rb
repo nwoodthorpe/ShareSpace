@@ -1,7 +1,5 @@
 class MessagesController < ApplicationController
   def create
-    byebug
-
     message = Message.new(
       room_id: params['room_id'],
       user_id: params['user_id'],

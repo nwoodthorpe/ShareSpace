@@ -134,6 +134,55 @@ class RoomsControllerTest < ActionDispatch::IntegrationTest
     assert_template 'rooms/auth'
   end
 
+  test 'POST to auth with bad short_url gets redirected to root' do
+    init_user
+
+    post authenticate_path(password: 'hello', short_url: 's')
+
+    assert_redirected_to root_path
+  end
+
+  test 'POST to auth with bad short_url shows helpful flash' do
+    init_user
+
+    post authenticate_path(password: 'hello', short_url: 's')
+
+    assert_equal flash[:error], 'Could not find room: s'
+  end
+
+  test 'POST to auth with incorrect password renders auth' do
+    init_user
+
+    post authenticate_path(
+      short_url: @private_room.short_url,
+      password: @private_password + 'blah'
+    )
+
+    assert_template 'rooms/auth'
+  end
+
+  test 'POST to auth with incorrect password shows helpful flash' do
+    init_user
+
+    post authenticate_path(
+      short_url: @private_room.short_url,
+      password: @private_password + 'blah'
+    )
+
+    assert_equal flash[:error], 'Incorrect password'
+  end
+
+  test 'POST to auth with correct password redirects to index' do
+    init_user
+
+    post authenticate_path(
+      short_url: @private_room.short_url,
+      password: @private_password
+    )
+
+    assert_redirected_to view_room_path(@private_room.short_url)
+  end
+
   def init_user
     post users_path, params: {user: User.new(name: "Bob")}, as: :json
 

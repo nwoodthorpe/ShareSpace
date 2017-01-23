@@ -1,3 +1,23 @@
+<%= render 'static/header' %>
+<div class='prompt-container'>
+  <div class='prompt'>
+    Joining "<%= @room.short_url %>"...
+  </div>
+</div>
+
+<div id='password-tile' class='tile-container'>
+  <div class='action-tile'>
+    <div class='form-prompt'>
+      Please enter the room password:
+    </div>
+  </div>
+</div>
+
+<%= form_tag authenticate_path(@room.short_url) do %>
+  <%= password_field_tag :password %>
+  <%= submit_tag 'Join' %>
+<% end %>
+
 <%= @room.id %>
 
 </br>
