@@ -15,6 +15,11 @@ class Room < ApplicationRecord
     !self[:public_room]
   end
 
+  def is_password?(password)
+    return true if self[:public_room]
+    self[:encrypted_password] == BCrypt::Engine.hash_secret(password, self[:salt])
+  end
+
   private
 
   def set_default_values
