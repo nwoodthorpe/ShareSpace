@@ -70,43 +70,43 @@
 
 <script>
   function privateClick(){
-    form = document.getElementById('private-form');
-    button = document.getElementById('locked-tile');
-    text = document.getElementById('private-text');
+    form = $('#private-form');
+    text = $('#private-text');
+    button = $('#locked-tile');
 
-    button.style.display = 'none';
-    form.style.display = 'block';
-    text.style.display = 'none';
+    button.fadeOut(100);
+    text.fadeOut(100);
+    form.fadeIn(500);
   }
 
   function privateBack(){
-    form = document.getElementById('private-form');
-    button = document.getElementById('locked-tile');
-    text = document.getElementById('private-text');
+    form = $('#private-form');
+    text = $('#private-text');
+    button = $('#locked-tile');
 
-    button.style.display = 'block';
-    form.style.display = 'none';
-    text.style.display = 'block';
+    button.fadeIn(500);
+    text.fadeIn(500);
+    form.fadeOut(100);
   }
 
   function joinClick(){
-    form = document.getElementById('join-form');
-    button = document.getElementById('join-tile');
-    text = document.getElementById('join-text');
+    form = $('#join-form');
+    button = $('#join-tile');
+    text = $('#join-text');
 
-    button.style.display = 'none';
-    form.style.display = 'block';
-    text.style.display = 'none';
+    button.fadeOut(100);
+    text.fadeOut(100);
+    form.fadeIn(500);
   }
 
   function joinBack(){
-    form = document.getElementById('join-form');
-    button = document.getElementById('join-tile');
-    text = document.getElementById('join-text');
+    form = $('#join-form');
+    button = $('#join-tile');
+    text = $('#join-text');
 
-    button.style.display = 'block';
-    form.style.display = 'none';
-    text.style.display = 'block';
+    button.fadeIn(500);
+    text.fadeIn(500);
+    form.fadeOut(100);
   }
 
   function handleKeyPress(event){
