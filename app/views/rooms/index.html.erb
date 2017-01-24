@@ -20,3 +20,7 @@ Messages: </br>
 <div id="message-container" data-room-id="<%= @room.id %>">
   <%= render @room.messages %>
 </div>
+
+<script>
+  var newMessage = new Audio("<%= image_path('mario1.wav')%>");
+</script>
