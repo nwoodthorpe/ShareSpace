@@ -1,0 +1,7 @@
+<% if flash[:error] %>
+  <div class='flash-bar'>
+    <%= flash[:error] %>
+  </div>
+
+  <% flash.clear %>
+<% end %>
