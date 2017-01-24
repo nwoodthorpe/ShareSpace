@@ -30,10 +30,10 @@
       </div>
       <%= form_tag rooms_path(public_room: false), { method: :post, class: 'form' } do %>
         <div class='password-container'>
-          <%= password_field_tag :password, params[:password], { class: 'password-field' }%>
+          <%= password_field_tag :password, params[:password], { class: 'password-field' } %>
         </div>
         <div class='submit-container'>
-          <%= submit_tag 'Create', { class: 'submit-button' }%>
+          <%= submit_tag 'Create', { class: 'submit-button' } %>
         </div>
       <% end %>
     </div>
