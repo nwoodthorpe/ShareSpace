@@ -5,6 +5,8 @@
 @App = {}
 App.cable = ActionCable.createConsumer('cable')
 
+window.lastMessage = false
+
 jQuery(document).on 'turbolinks:load', ->
   messages = $('#message-container')
   messages_loading = $('#message-container-loading')
@@ -25,7 +27,11 @@ jQuery(document).on 'turbolinks:load', ->
         console.log('We are now disconnected')
 
       received: (data) ->
-        console.log("RECIEVED DATA")
+        if window.lastMessage
+          window.lastMessage = false
+        else
+          newMessage.play()
+
         messages.append data['message']
 
       send_message: (message, room_id) ->
@@ -33,6 +39,7 @@ jQuery(document).on 'turbolinks:load', ->
 
     $('#newMessage').submit (e) ->
       $this = $(this)
+      window.lastMessage = true
       textarea = $this.find('#message_content')
       if $.trim(textarea.val()).length > 1
         App.global_chat.send_message textarea.val(), messages.data('room-id')
