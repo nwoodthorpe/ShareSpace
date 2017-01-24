@@ -161,17 +161,6 @@ class RoomsControllerTest < ActionDispatch::IntegrationTest
     assert_template 'rooms/auth'
   end
 
-  test 'POST to auth with incorrect password shows helpful flash' do
-    init_user
-
-    post authenticate_path(
-      short_url: @private_room.short_url,
-      password: @private_password + 'blah'
-    )
-
-    assert_equal flash[:error], 'Incorrect password'
-  end
-
   test 'POST to auth with correct password redirects to index' do
     init_user
 
