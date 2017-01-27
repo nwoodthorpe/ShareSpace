@@ -22,7 +22,7 @@ class RoomsController < ApplicationController
 
     @user = current_user
 
-    @messages = @room.messages
+    @messages = Message.includes(:user).where(room_id: @room.id).last(10)
     @message = Message.new
   end
 

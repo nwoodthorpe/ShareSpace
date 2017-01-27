@@ -9,6 +9,7 @@ class MessageBroadcastJob < ApplicationJob
   private
 
   def render_message(message)
-    MessagesController.render partial: 'messages/message', locals: {message: message}
+    MessagesController.render partial: 'messages/their_message', locals: {message: message, skip_name: true}
+    MessagesController.render partial: 'messages/your_message', locals: {message: message, skip_name: true}
   end
 end

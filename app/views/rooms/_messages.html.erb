@@ -1,0 +1,18 @@
+<% @room.messages.each do |message| %>
+  <% last_user = nil %>
+  <% if message.user_id == @user.id %>
+    <% if @last_user == :yours %>
+      <%= render 'messages/your_message', message: message, skip_name: true %>
+    <% else %>
+      <% @last_user = :yours %>
+      <%= render 'messages/your_message', message: message, skip_name: false %>
+    <% end %>
+  <% else %>
+    <% if @last_user == :theirs %>
+      <%= render 'messages/their_message', message: message, skip_name: true %>
+    <% else %>
+      <% @last_user = :theirs %>
+      <%= render 'messages/their_message', message: message, skip_name: false %>
+    <% end %>
+  <% end %>
+<% end %>

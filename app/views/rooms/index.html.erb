@@ -1,24 +1,36 @@
 <%= render 'static/header' %>
 <%= render 'static/flash' %>
 
-You are now in a room and authenticated
-
-</br></br>
-
-<form id='newMessage'>
-  <input type='text' id='message_content' placeholder='message'/>
-  <input type='submit' />
-</form>
-
-</br></br>
-Messages: </br>
-
-<div id='message-container-loading'>
-  Loading...
-</div>
-
-<div id="message-container" data-room-id="<%= @room.id %>">
-  <%= render @room.messages %>
+<div class='room-index-flex-container'>
+  <div class='left-container'>
+    <div class='messages-container'>
+      <div id="message-container" data-room-id="<%= @room.id %>">
+        <%= render 'messages' %>
+      </div>
+      <div id='message-container-loading'>
+        Loading...
+      </div>
+    </div>
+    <div class='send-container'>
+      <div class='send-button-bar'>
+        We'll have buttons here for different types of messages we can send. Like images, videos, etc.
+      </div>
+      <div class='send-message-bar'>
+        <form id='newMessage'>
+          <input type='text' id='message_content' class='message-content' placeholder='Send a message...'/>
+          <input type='submit' class='message-send' value='Send'/>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class='right-container'>
+    <div class='users-title'>
+      Active Users:
+    </div>
+    <div class='users-list'>
+      <%= render 'active_users' %>
+    </div>
+  </div>
 </div>
 
 <script>
