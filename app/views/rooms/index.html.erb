@@ -4,7 +4,7 @@
 <div class='room-index-flex-container'>
   <div class='left-container'>
     <div class='messages-container'>
-      <div id="message-container" data-room-id="<%= @room.id %>">
+      <div id="message-container" data-room-id="<%= @room.id %>" data-user-id="<%= @user.id %>">
         <%= render 'messages' %>
       </div>
       <div id='message-container-loading'>

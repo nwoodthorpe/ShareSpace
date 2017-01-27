@@ -13,7 +13,7 @@ module ApplicationCable
       cookies.encrypted[Rails.application.config.session_options[:key]]
     end
 
-    def find_verified_user # this checks whether a user is authenticated with devise
+    def find_verified_user
       if verified_user = User.find_by(id: session["user_id"])
         verified_user
       else
