@@ -111,15 +111,17 @@ button:focus {
   font-family: 'montserrat-light';
   font-size: 1em;
   height: 35px;
-  width: 80%;
+  width: calc(90% - 41px);
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   border-radius: 15px;
 }
 
 .message-send {
-  width: 14%;
-  height: 50px;
+  width: 41px;
+  height: 41px;
+  float: right;
+  margin-right: 10px;
 }
 
 .message {
