@@ -63,10 +63,16 @@ button:focus {
   font-size: 1.4em;
 }
 
+.users-list {
+  padding: 10px;
+}
+
 .messages-container {
   height: 100%;
   //background-color: orange;
   overflow: scroll;
+  font-family: 'montserrat-light';
+  font-size: 1em;
 }
 
 .send-container {
@@ -121,7 +127,7 @@ button:focus {
   width: 200px;
   border-radius: 10px;
   padding: 15px;
-  margin: 15px;
+  margin: 8px;
   margin-top: 2px;
 }
 
@@ -136,11 +142,11 @@ button:focus {
 
 .their-sender {
   margin-left: 15px;
-  margin-top: 13px;
+  margin-top: 8px;
 }
 
 .your-sender {
   width: 240px;
   margin-left: auto;
-  margin-top: 13px;
+  margin-top: 8px;
 }

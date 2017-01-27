@@ -5,13 +5,7 @@
   <div class='left-container'>
     <div class='messages-container'>
       <div id="message-container" data-room-id="<%= @room.id %>">
-        <% @room.messages.each do |message| %>
-          <% if message.user_id == @user.id %>
-            <%= render 'messages/your_message', message: message %>
-          <% else %>
-            <%= render 'messages/their_message', message: message %>
-          <% end %>
-        <% end %>
+        <%= render 'messages' %>
       </div>
       <div id='message-container-loading'>
         Loading...
@@ -34,7 +28,7 @@
       Active Users:
     </div>
     <div class='users-list'>
-      # User Should have an active flag on it or something
+      <%= render 'active_users' %>
     </div>
   </div>
 </div>
