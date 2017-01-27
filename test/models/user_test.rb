@@ -11,7 +11,7 @@ class UserTest < ActiveSupport::TestCase
   test "user can exist independently of a Room" do
     user = User.new(room: nil, name: "Hello")
 
-    assert user.save
+    refute user.save
   end
 
   test "user can belong to a Room" do
