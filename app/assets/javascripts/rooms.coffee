@@ -31,29 +31,35 @@ jQuery(document).on 'turbolinks:load', ->
 
       received: (data) ->
         self_id = messages.data('user-id')
+
+        last_message = messages[0].lastElementChild
+
+        div = document.createElement('div');
+        div.innerHTML = data["message"];
+
+        output = null
+
         if self_id == data['userid']
-          if data['type'] == 'their'
-            return
-          else if (messages[0].lastElementChild == null)
-            if(!data['name'])
-              return
-          else if (((messages[0].lastElementChild.className.search(/your/) != -1) == data['name']))
-            return
+          if !last_message
+            output = div.children[2]
+          else if last_message.getAttribute("data-user") == String(self_id)
+            output = div.children[3]
+          else
+            output = div.children[2]
         else
-          if data['type'] == 'your'
-            return
-          else if (messages[0].lastElementChild == null)
-            if(!data['name'])
-              return
-          else if ((messages[0].lastElementChild.className.search(/their/) != -1) == (data['name']))
-            return
+          if !last_message
+            output = div.children[0]
+          else if last_message.getAttribute("data-user") == String(self_id)
+            output = div.children[0]
+          else
+            output = div.children[1]
 
         if window.lastMessage
           window.lastMessage = false
         else
           newMessage.play()
 
-        messages.append data['message']
+        messages.append output
 
         container.animate({ scrollTop: container.prop("scrollHeight")}, 1000);
 

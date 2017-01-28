@@ -4,28 +4,15 @@ class MessageBroadcastJob < ApplicationJob
   # Hack to deal with different message templates on the client side.
   def perform(message)
     ActionCable.server.broadcast "rooms_#{message.room.id}_channel",
-                                 message: their_message(message),
-                                 type: 'their',
-                                 name: false,
-                                 userid: message.user.id
-    ActionCable.server.broadcast "rooms_#{message.room.id}_channel",
-                                 message: their_message_name(message),
-                                 type: 'their',
-                                 name: true,
-                                 userid: message.user.id
-   ActionCable.server.broadcast "rooms_#{message.room.id}_channel",
-                                 message: your_message(message),
-                                 type: 'your',
-                                 name: false,
-                                 userid: message.user.id
-    ActionCable.server.broadcast "rooms_#{message.room.id}_channel",
-                                 message: your_message_name(message),
-                                 type: 'your',
-                                 name: true,
+                                 message: mix_message(message),
                                  userid: message.user.id
   end
 
   private
+
+  def mix_message(message)
+    MessagesController.render partial: 'messages/mix_messages', locals: {message: message}
+  end
 
   def their_message_name(message)
     MessagesController.render partial: 'messages/their_message', locals: {message: message, skip_name: false}

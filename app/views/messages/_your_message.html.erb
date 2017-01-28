@@ -1,8 +1,10 @@
-<% unless skip_name %>
-  <div class='sender your-sender'>
-    You:
+<div data-user='<%= message.user.id %>'>
+  <% unless skip_name %>
+    <div class='sender your-sender'>
+      You:
+    </div>
+  <% end %>
+  <div class='message your-message'>
+    <%= message.content %>
   </div>
-<% end %>
-<div class='message your-message'>
-  <%= message.content %>
 </div>
