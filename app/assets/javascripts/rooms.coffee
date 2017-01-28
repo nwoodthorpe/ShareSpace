@@ -31,12 +31,17 @@ jQuery(document).on 'turbolinks:load', ->
         if self_id == data['userid']
           if data['type'] == 'their'
             return
+          else if (messages[0].lastElementChild == null)
+            if(!data['name'])
+              return
           else if (((messages[0].lastElementChild.className.search(/your/) != -1) == data['name']))
             return
-
         else
           if data['type'] == 'your'
             return
+          else if (messages[0].lastElementChild == null)
+            if(!data['name'])
+              return
           else if ((messages[0].lastElementChild.className.search(/their/) != -1) == (data['name']))
             return
 
