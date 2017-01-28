@@ -84,6 +84,12 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  config.cache_classes = true
+  config.serve_static_files = true
+  config.assets.compile = true
+  config.assets.digest = true
+
+  config.serve_static_assets = true
   config.action_cable.allowed_request_origins = ['https://nwsharespace.herokuapp.com', 'http://nwsharespace.herokuapp.com']
   config.web_socket_server_url = "wss://nwsharespace.herokuapp.com/cable"
 end
