@@ -20,10 +20,8 @@ gem 'jquery-rails' #JQuery
 
 gem 'bcrypt-ruby', :require => 'bcrypt' # For hashing passwords
 
-gem 'rails_stdout_logging'
-gem 'rails_serve_static_assets'
-
 group :production do
+  gem 'rails_12factor'
   gem 'pg' # Production database
 end
 
