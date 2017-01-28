@@ -7,7 +7,6 @@ end
 
 
 gem 'rails' # Rails
-gem 'sqlite3' # Active Record database
 gem 'puma', '~> 3.0' # Web server
 gem 'sass-rails', '~> 5.0' # SCSS for stylesheets
 gem 'uglifier', '>= 1.3.0' # Asset compressor
@@ -21,9 +20,14 @@ gem 'jquery-rails' #JQuery
 
 gem 'bcrypt-ruby', :require => 'bcrypt' # For hashing passwords
 
+group :production do
+  gem 'pg' # Production database
+end
+
 group :development, :test do
   gem 'byebug', platform: :mri # Debug tool
   gem 'rails-controller-testing' # Provides controller testing methods
+  gem 'sqlite3' # Active Record database
 end
 
 group :development do
