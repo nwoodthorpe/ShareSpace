@@ -10,6 +10,7 @@ window.lastMessage = false
 jQuery(document).on 'turbolinks:load', ->
   messages = $('#message-container')
   messages_loading = $('#message-container-loading')
+  container = $('#messages-container');
 
   if $('#message-container').length > 0
     App.global_chat = App.cable.subscriptions.create {
@@ -21,6 +22,8 @@ jQuery(document).on 'turbolinks:load', ->
         console.log('We are now connected')
         messages.show()
         messages_loading.hide()
+
+        container.scrollTop(container.prop("scrollHeight"));
 
       disconnected: ->
         # Called when the subscription has been terminated by the server
@@ -51,6 +54,8 @@ jQuery(document).on 'turbolinks:load', ->
           newMessage.play()
 
         messages.append data['message']
+
+        container.animate({ scrollTop: container.prop("scrollHeight")}, 1000);
 
       send_message: (message, room_id) ->
         @perform 'send_message', message: message, room_id: room_id
