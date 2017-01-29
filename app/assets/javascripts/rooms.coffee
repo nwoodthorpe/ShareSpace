@@ -38,11 +38,7 @@ jQuery(document).on 'turbolinks:load', ->
         div.innerHTML = data["message"];
 
         output = null
-
-        console.log("Logging:")
-        console.log(div)
-        console.log(last_message)
-
+        
         if self_id == data['userid']
           if !last_message
             output = div.children[2]
@@ -51,12 +47,13 @@ jQuery(document).on 'turbolinks:load', ->
           else
             output = div.children[2]
         else
+
           if !last_message
             output = div.children[0]
-          else if last_message.getAttribute("data-user") == String(self_id)
-            output = div.children[0]
-          else
+          else if div.children[0].getAttribute("data-user") == String(self_id)
             output = div.children[1]
+          else
+            output = div.children[0]
 
         if window.lastMessage
           window.lastMessage = false
