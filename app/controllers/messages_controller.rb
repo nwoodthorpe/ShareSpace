@@ -3,11 +3,9 @@ class MessagesController < ApplicationController
     message = Message.new(
       room_id: params['room_id'],
       user_id: params['user_id'],
-      content: params['message']['content']
+      content: params['message']
     )
-
-    message.save
-
+    
     respond_to do |format|
       format.html
       format.js

@@ -63,7 +63,7 @@ jQuery(document).on 'turbolinks:load', ->
         container.animate({ scrollTop: container.prop("scrollHeight")}, 1000);
 
       send_message: (message, room_id) ->
-        @perform 'send_message', message: message, room_id: room_id
+        @perform 'send_message', content: message, room_id: room_id
 
     $('#newMessage').submit (e) ->
       $this = $(this)

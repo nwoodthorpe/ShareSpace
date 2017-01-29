@@ -13,20 +13,4 @@ class MessageBroadcastJob < ApplicationJob
   def mix_message(message)
     MessagesController.render partial: 'messages/mix_messages', locals: {message: message}
   end
-
-  def their_message_name(message)
-    MessagesController.render partial: 'messages/their_message', locals: {message: message, skip_name: false}
-  end
-
-  def their_message(message)
-    MessagesController.render partial: 'messages/their_message', locals: {message: message, skip_name: true}
-  end
-
-  def your_message_name(message)
-    MessagesController.render partial: 'messages/your_message', locals: {message: message, skip_name: false}
-  end
-
-  def your_message(message)
-    MessagesController.render partial: 'messages/your_message', locals: {message: message, skip_name: true}
-  end
 end

@@ -11,7 +11,10 @@ class RoomsChannel < ApplicationCable::Channel
 
   def send_message(data)
     (return false) unless current_user.room_id == data['room_id']
-    current_user.messages.create!(content: data['message'], room_id: data['room_id'])
+
+    message = current_user.messages.new(room_id: data['room_id'])
+    message.set_content('TextMessage', data['content'])
+    message.save
   end
 
   private
