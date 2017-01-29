@@ -20,15 +20,26 @@ class MessageTest < ActiveSupport::TestCase
     assert message.errors['room']
   end
 
-  test "room is valid with room and user" do
+  test "invalid if does not have content" do
     message = Message.new(room: @room, user: @user)
+
+    refute message.save
+    assert message.errors['conent_klass']
+  end
+
+  test 'valid if we set content correctly' do
+    message = Message.new(room: @room, user: @user)
+    message.set_content('TextMessage', 'Hello')
 
     assert message.save
   end
 
-  test "room message defaults to empty string" do
-    message = Message.create(room: @room, user: @user)
+  test 'message renders correctly' do
+    message = Message.new(room: @room, user: @user)
+    message.set_content('TextMessage', 'Hello')
 
-    assert_equal message.content, ""
+    message.save
+
+    assert_equal message.render, 'Hello'
   end
 end
