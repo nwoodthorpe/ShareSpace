@@ -38,7 +38,7 @@ jQuery(document).on 'turbolinks:load', ->
         div.innerHTML = data["message"];
 
         output = null
-        
+
         if self_id == data['userid']
           if !last_message
             output = div.children[2]
@@ -57,8 +57,6 @@ jQuery(document).on 'turbolinks:load', ->
 
         if window.lastMessage
           window.lastMessage = false
-        else
-          newMessage.play()
 
         messages.append output
 
