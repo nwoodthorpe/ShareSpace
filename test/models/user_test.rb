@@ -27,4 +27,11 @@ class UserTest < ActiveSupport::TestCase
     assert user.save
     refute_equal user.last_active, nil
   end
+
+  test "user cannot have long name" do
+    user = User.new(last_active: nil, name: 'H'*100)
+
+    refute user.save
+    assert user.errors['name']
+  end
 end
