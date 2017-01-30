@@ -14,7 +14,7 @@ class RoomsChannel < ApplicationCable::Channel
 
     message = current_user.messages.new(room_id: data['room_id'])
     message.set_content('TextMessage', data['content'])
-    message.save
+    message.save!
   end
 
   private

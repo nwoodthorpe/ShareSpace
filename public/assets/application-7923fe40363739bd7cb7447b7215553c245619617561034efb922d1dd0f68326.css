@@ -1,0 +1,395 @@
+/* line 5, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+/* line 12, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+#message-container {
+  display: none;
+}
+
+/* line 16, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.prompt-container {
+  padding-top: 10px;
+}
+
+/* line 20, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.prompt {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  font-family: 'montserrat-light';
+  font-size: 1.7em;
+}
+
+/* line 28, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+#password-tile {
+  justify-content: center;
+}
+
+/* line 32, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.room-index-flex-container {
+  display: flex;
+  width: 100%;
+  height: -webkit-calc(100vh - 95px);
+  height: -moz-calc(100vh - 95px);
+  height: calc(100vh - 95px);
+}
+
+/* line 40, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.left-container {
+  flex: 4;
+  display: table-cell;
+  height: -webkit-calc(100% - 100px);
+  height: -moz-calc(100% - 100px);
+  height: calc(100% - 100px);
+}
+
+/* line 48, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.right-container {
+  flex: 1;
+  height: 100%;
+  border-left: 3px;
+  border-right: 0px;
+  border-top: 0px;
+  border-bottom: 0px;
+  border-style: solid;
+  border-color: black;
+  font-family: 'montserrat-light';
+}
+
+/* line 61, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.users-title {
+  text-align: center;
+  font-size: 1.4em;
+}
+
+/* line 66, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.users-list {
+  padding: 10px;
+}
+
+/* line 70, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.messages-container {
+  height: 100%;
+  overflow: scroll;
+  font-family: 'montserrat-light';
+  font-size: 1em;
+}
+
+/* line 78, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.send-container {
+  position: absolute;
+  bottom: 0;
+  width: 80%;
+  height: 100px;
+}
+
+/* line 85, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.send-button-bar {
+  border-top: 1px;
+  border-right: 0px;
+  border-bottom: 0px;
+  border-left: 0px;
+  border-style: solid;
+  border-color: black;
+  height: 49px;
+  width: 100%;
+}
+
+/* line 96, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.send-message-bar {
+  padding: 5px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  height: 44px;
+  border-top: 1px;
+  border-left: 0px;
+  border-right: 1px;
+  border-bottom: 0px;
+  border-style: solid;
+  border-color: black;
+}
+
+/* line 109, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.message-content {
+  padding-left: 4%;
+  font-family: 'montserrat-light';
+  font-size: 1em;
+  height: 35px;
+  width: calc(90% - 41px);
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+
+/* line 120, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.message-send {
+  width: 41px;
+  height: 41px;
+  float: right;
+  margin-right: 10px;
+}
+
+/* line 127, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.message {
+  height: auto;
+  width: 200px;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 8px;
+  margin-top: 2px;
+}
+
+/* line 136, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.their-message {
+  background-color: lightgray;
+}
+
+/* line 140, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.your-message {
+  margin-left: auto;
+  background-color: #13cdfb;
+}
+
+/* line 145, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.their-sender {
+  margin-left: 15px;
+  margin-top: 8px;
+}
+
+/* line 150, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.your-sender {
+  width: 240px;
+  margin-left: auto;
+  margin-top: 8px;
+}
+
+/* line 156, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.uploaded-image-container {
+  max-width: 200px;
+  max-height: 100px;
+}
+
+/* line 161, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/rooms.scss */
+.uploaded-image {
+  max-width: 100%;
+  height: auto;
+}
+@font-face {
+  font-family: 'monsterrat-light';
+  src: url(/assets/Montserrat-Light-5511f3787e0d32d6f818fe312032d721efee8ef2b6a9240dd4689fe47d85484c.otf);
+  font-weight: normal;
+  font-style: normal;
+}
+/* line 12, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* line 14, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.flash-bar {
+  width: 100%;
+  background-color: #ADCAD6;
+  text-align: center;
+  font-family: 'montserrat-light';
+  font-size: 1em;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/* line 25, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+#header-bar {
+  height: 60px;
+  background-color: #13cdfb;
+  padding: 15px;
+  display: flex;
+  padding-bottom: 20px;
+}
+
+/* line 34, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+#header-bar-title {
+  font-family: 'montserrat-light';
+  font-size: 3em;
+  display: flex;
+  align-items: center;
+}
+
+/* line 42, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+#header-bar-links {
+  margin-left: auto;
+  display: flex;
+}
+
+/* line 47, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.header-link {
+  margin: 20px;
+  font-family: 'montserrat-light';
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+}
+
+/* line 56, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+#welcome-block {
+  padding-top: 10px;
+}
+
+/* line 60, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.welcome-message {
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: 'montserrat-light';
+  font-size: 1.7em;
+}
+
+/* line 69, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.tile-container {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+/* line 76, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.action-tile {
+  width: 300px;
+  height: 300px;
+  padding: 3px;
+  background-color: #13cdfb;
+  margin: 10px;
+  padding: 8px;
+}
+
+/* line 87, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.tile-image {
+  width: 100%;
+  height: 80%;
+}
+
+/* line 92, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.unlocked-tile {
+  background: url(/assets/unlocked-6e875c3b1c38a22358dd287f299f1d85305936af93f67e0abe62b1a3ac0e2457.png);
+  background-size: 105% 105%;
+  background-position: center center;
+}
+
+/* line 98, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.locked-tile {
+  background: url(/assets/locked-a818661da4b7f5c6af8bd08a6e3a64adcdefbcfb61e53daf6a0f009b245a24ef.png);
+  background-size: 105% 105%;
+  background-position: center center;
+}
+
+/* line 104, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.join-tile {
+  background: url(/assets/join-0c3a58e0004e5b689c4a80f6772b74c6b49f26d40deb50844f98fb0c2d07e309.png);
+  background-size: 105% 105%;
+  background-position: center center;
+}
+
+/* line 110, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.private-form {
+  display: none;
+}
+
+/* line 114, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.tile-text {
+  font-family: 'montserrat-light';
+  font-size: 1.7em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 68px;
+}
+
+/* line 124, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.tile-text-span {
+  width: 100%;
+  text-align: center;
+}
+
+/* line 129, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.private-form {
+  display: none;
+}
+
+/* line 133, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.form {
+  height: 75%;
+  margin-top: 10%;
+}
+
+/* line 138, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.form-prompt {
+  font-family: 'montserrat-light';
+  text-align: center;
+  margin-top: 5%;
+}
+
+/* line 145, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.private-form-back-button {
+  background: url(/assets/back-cfeea1e93a0cf83d0fef99b4267fc0211928044cc83fe2b854a16ddec5752e4b.png);
+  background-size: 105% 105%;
+  background-position: center center;
+  height: 40px;
+  width: 40px;
+}
+
+/* line 153, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.password-container {
+  margin-top: 10%;
+  width: 100%;
+  text-align: center;
+}
+
+/* line 159, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.password-field {
+  margin: auto;
+}
+
+/* line 163, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.submit-button {
+  width: 100%;
+}
+
+/* line 167, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.submit-container {
+  padding-top: 10%;
+  width: 20%;
+  margin: 0 auto;
+}
+
+/* line 174, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.join-form {
+  display: none;
+}
+
+/* line 178, /Users/nathanielwoodthorpe/dev/room/ShareSpace/app/assets/stylesheets/static.scss */
+.back-button {
+  display: inline-block;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+
+
+body { margin:0px; }

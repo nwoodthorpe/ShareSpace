@@ -2,7 +2,7 @@ class TextMessage < ApplicationRecord
   validates :content, presence: true, length: { maximum: 2000 }
 
   class << self
-    def data_to_obj(data)
+    def factory(data)
       TextMessage.create(content: data)
     end
   end

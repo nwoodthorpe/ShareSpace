@@ -10,7 +10,7 @@ class Message < ApplicationRecord
   after_create_commit { MessageBroadcastJob.perform_later(self) }
 
   def set_content(type, content)
-    message_content = type.constantize.data_to_obj(content)
+    message_content = type.constantize.factory(content)
 
     self.content_klass = type
     self.content_id = message_content.id

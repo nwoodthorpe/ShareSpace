@@ -13,7 +13,11 @@
     </div>
     <div class='send-container'>
       <div class='send-button-bar'>
-        We'll have buttons here for different types of messages we can send. Like images, videos, etc.
+        <%= form_for(@message, url: room_user_messages_path(room_id: @room.id, user_id: @user.id), remote: true, multipart: true) do |f| %>
+          <%= hidden_field_tag(:type, 'ImageMessage') %>
+          <%= f.file_field :attachment %>
+          <%= f.submit 'DO IT' %>
+        <% end %>
       </div>
       <div class='send-message-bar'>
         <form id='newMessage'>
