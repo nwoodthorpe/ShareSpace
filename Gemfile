@@ -20,6 +20,11 @@ gem 'jquery-rails' #JQuery
 
 gem 'bcrypt-ruby', :require => 'bcrypt' # For hashing passwords
 
+gem "fog-aws" # S3 integration
+gem 'carrierwave', '~> 1.0' # File upload management
+
+gem 'remotipart', '~> 1.2' # For AJAX file uploads
+
 group :production do
   gem 'rails_12factor'
   gem 'pg' # Production database

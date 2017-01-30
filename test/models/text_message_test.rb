@@ -14,8 +14,8 @@ class TextMessageTest < ActiveSupport::TestCase
     assert message.save
   end
 
-  test "data_to_obj saves to database" do
-    TextMessage.data_to_obj('Hello')
+  test "factory saves to database" do
+    TextMessage.factory('Hello')
 
     assert_equal TextMessage.last.content, 'Hello'
   end
