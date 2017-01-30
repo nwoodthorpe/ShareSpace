@@ -2,7 +2,7 @@ class User < ApplicationRecord
   belongs_to :room, optional: true
   has_many :messages
 
-  validates :name, presence: true, allow_blank: false
+  validates :name, presence: true, allow_blank: false, length: { maximum: 50 }
 
   before_save :default_last_active
 
