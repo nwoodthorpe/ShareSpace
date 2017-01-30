@@ -13,10 +13,16 @@
     </div>
     <div class='send-container'>
       <div class='send-button-bar'>
-        <%= form_for(@message, url: room_user_messages_path(room_id: @room.id, user_id: @user.id), remote: true, multipart: true) do |f| %>
+        <%= form_for(@message, url: room_user_messages_path(room_id: @room.id, user_id: @user.id), remote: true, multipart: true, authenticity_token: true) do |f| %>
           <%= hidden_field_tag(:type, 'ImageMessage') %>
-          <%= f.file_field :attachment %>
-          <%= f.submit 'DO IT' %>
+          <div class="image-upload">
+            <label for="file-input">
+              <img class='image-button button-bar-button' src="<%= image_path('image.gif') %>"/>
+            </label>
+
+            <%= f.file_field :attachment, id: 'file-input', onchange: 'document.getElementById(\'image-submit\').click()' %>
+          </div>
+          <%= f.submit 'DO IT', id: 'image-submit', style: 'display: none' %>
         <% end %>
       </div>
       <div class='send-message-bar'>
