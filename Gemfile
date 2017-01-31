@@ -25,7 +25,7 @@ gem 'carrierwave', '~> 1.0' # File upload management
 
 gem 'remotipart', '~> 1.2' # For AJAX file uploads
 
-gem 'file_validators' # For file size validations
+gem 'file_validators' # For file size validationsg
 
 group :production do
   gem 'rails_12factor'

@@ -15,25 +15,36 @@
       <div class='send-button-bar'>
         <%= form_for(@message, url: room_user_messages_path(room_id: @room.id, user_id: @user.id), remote: true, multipart: true, authenticity_token: true) do |f| %>
           <%= hidden_field_tag(:type, 'ImageMessage') %>
-          <div class="image-upload">
+          <div class="upload">
             <label for="image-input">
               <img class='image-button button-bar-button' src="<%= image_path('image.gif') %>"/>
             </label>
 
-            <%= f.file_field :attachment, id: 'image-input', onchange: 'document.getElementById(\'image-submit\').click()' %>
+            <%= f.file_field :attachment, id: 'image-input', onchange: 'fileSizeValidation(\'image\')', accept: "image/*" %>
           </div>
           <%= f.submit '', id: 'image-submit', style: 'display: none' %>
         <% end %>
         <%= form_for(@message, url: room_user_messages_path(room_id: @room.id, user_id: @user.id), remote: true, multipart: true, authenticity_token: true) do |f| %>
           <%= hidden_field_tag(:type, 'ImageMessage') %>
-          <div class="image-upload">
+          <div class="upload">
             <label for="camera-input">
               <img class='image-button button-bar-button' src="<%= image_path('camera.png') %>"/>
             </label>
 
-            <%= f.file_field :attachment, id: 'camera-input', onchange: 'document.getElementById(\'camera-submit\').click()', accept: "image/*", capture: "camera" %>
+            <%= f.file_field :attachment, id: 'camera-input', onchange: 'fileSizeValidation(\'camera\')', accept: "image/*", capture: "camera" %>
           </div>
           <%= f.submit '', id: 'camera-submit', style: 'display: none' %>
+        <% end %>
+        <%= form_for(@message, url: room_user_messages_path(room_id: @room.id, user_id: @user.id), remote: true, multipart: true, authenticity_token: true) do |f| %>
+          <%= hidden_field_tag(:type, 'FileMessage') %>
+          <div class="upload">
+            <label for="file-input">
+              <img class='image-button button-bar-button' src="<%= image_path('file.png') %>"/>
+            </label>
+
+            <%= f.file_field :attachment, id: 'file-input', onchange: 'fileSizeValidation(\'file\')' %>
+          </div>
+          <%= f.submit '', id: 'file-submit', style: 'display: none' %>
         <% end %>
       </div>
       <div class='send-message-bar'>
