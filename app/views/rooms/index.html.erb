@@ -56,4 +56,17 @@
 
 <script>
   var newMessage = new Audio("<%= image_path('mario1.wav')%>");
+
+  function fileSizeValidation(inputType){
+    input = document.getElementById(inputType + '-input');
+    submit = document.getElementById(inputType + '-submit');
+
+    file = input.files[0];
+
+    if(file.size > 524288000){ // 500mb
+      alert("This file is too large!");
+    }else{
+      submit.click();
+    }
+  }
 </script>
