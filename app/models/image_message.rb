@@ -1,6 +1,8 @@
 class ImageMessage < ApplicationRecord
   mount_uploader :image, ImageUploader
 
+  validates :image, file_size: { less_than: 500.megabytes }
+
   class << self
     def factory(data)
       ImageMessage.create(image: data[:attachment])

@@ -60,6 +60,9 @@ GEM
     excon (0.54.0)
     execjs (2.7.0)
     ffi (1.9.14)
+    file_validators (2.1.0)
+      activemodel (>= 3.0)
+      mime-types (>= 1.0)
     fog-aws (1.2.0)
       fog-core (~> 1.38)
       fog-json (~> 1.0)
@@ -187,6 +190,7 @@ DEPENDENCIES
   byebug
   carrierwave (~> 1.0)
   coffee-rails (~> 4.2)
+  file_validators
   fog-aws
   jquery-rails
   listen (~> 3.0.5)
