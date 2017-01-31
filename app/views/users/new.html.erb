@@ -1,6 +1,24 @@
-Choose a username:
+<%= render 'static/header' %>
+<%= render 'static/flash' %>
 
-<%= form_for @user, url: users_path, html: {class: "class"} do |f| %>
-  <%= f.text_field :name %>
-  <%= f.submit "Set Username" %>
-<% end %>
+<div class='prompt-container'>
+  <div class='prompt'>
+    Before you do that...
+  </div>
+</div>
+
+<div id='prompt-tile' class='tile-container'>
+  <div class='action-tile'>
+    <div class='form-prompt'>
+      Please choose a username
+    </div>
+    <%= form_for @user, url: users_path, html: {class: "class"} do |f| %>
+    <div class='password-container'>
+      <%= f.text_field :name %>
+    </div>
+    <div class='submit-container'>
+      <%= f.submit "Select", class: 'submit-button' %>
+    </div>
+    <% end %>
+  </div>
+</div>
