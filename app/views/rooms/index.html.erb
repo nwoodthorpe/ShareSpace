@@ -46,6 +46,17 @@
           </div>
           <%= f.submit '', id: 'file-submit', style: 'display: none' %>
         <% end %>
+        <%= form_for(@message, url: room_user_messages_path(room_id: @room.id, user_id: @user.id), remote: true, multipart: true, authenticity_token: true) do |f| %>
+          <%= hidden_field_tag(:type, 'VideoMessage') %>
+          <div class="upload">
+            <label for="video-input">
+              <img class='image-button button-bar-button' src="<%= image_path('video.png') %>"/>
+            </label>
+
+            <%= f.file_field :attachment, id: 'video-input', onchange: 'fileSizeValidation(\'video\')', accept: ".mp4,.avi,.ogg,.mov" %>
+          </div>
+          <%= f.submit '', id: 'video-submit', style: 'display: none' %>
+        <% end %>
       </div>
       <div class='send-message-bar'>
         <form id='newMessage'>

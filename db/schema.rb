@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170131053208) do
+ActiveRecord::Schema.define(version: 20170201045243) do
 
   create_table "file_messages", force: :cascade do |t|
     t.string   "file",       null: false
@@ -57,6 +57,12 @@ ActiveRecord::Schema.define(version: 20170131053208) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["room_id"], name: "index_users_on_room_id"
+  end
+
+  create_table "video_messages", force: :cascade do |t|
+    t.string   "video",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
