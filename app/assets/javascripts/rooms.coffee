@@ -61,6 +61,7 @@ jQuery(document).on 'turbolinks:load', ->
         messages.append output
 
         container.animate({ scrollTop: container.prop("scrollHeight")}, 1000);
+        SyntaxHighlighter.all();
 
       send_message: (message, room_id) ->
         @perform 'send_message', content: message, room_id: room_id
