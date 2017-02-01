@@ -1,24 +1,20 @@
-# README
+# ShareSpace
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An app for simple sharing of information between people.
 
-Things you may want to cover:
+Created because I wanted to play with Rails' new web socket implementation, Action Cable
 
-* Ruby version
+Supports public and private rooms. Private rooms are password protected. All passwords are hashed and salted securely.
 
-* System dependencies
+The app supports the following message types:
 
-* Configuration
+- Text
+- Image
+- Camera
+- Video
+- Syntax Highlighting(using ```)
+- File upload
 
-* Database creation
+![Home view](http://i.imgur.com/pc7TMY3.png "Home View")
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![Room view](http://i.imgur.com/GahisP2.png "Room View")
