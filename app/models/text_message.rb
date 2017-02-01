@@ -8,6 +8,12 @@ class TextMessage < ApplicationRecord
   end
 
   def render
-    self[:content] || ""
+    return (self[:content] || '') unless code?
+
+    "<pre class='brush: plain'>".html_safe + self[:content][3..-1] + "</pre>".html_safe
+  end
+
+  def code?
+    self[:content][0..2] == '```'
   end
 end
