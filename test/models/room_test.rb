@@ -107,4 +107,13 @@ class RoomTest < ActiveSupport::TestCase
     assert room.save
     assert_nil room.reload.password
   end
+
+  test "when deleted, deletes messages" do
+    room = Room.create
+    message = room.messages.create
+
+    room.destroy
+
+    refute Message.find_by(id: message.id)
+  end
 end

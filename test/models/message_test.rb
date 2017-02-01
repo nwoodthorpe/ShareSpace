@@ -42,4 +42,15 @@ class MessageTest < ActiveSupport::TestCase
 
     assert_equal message.render, 'Hello'
   end
+
+  test 'message deletes content if deleted' do
+    message = Message.new(room: @room, user: @user)
+    message.set_content('TextMessage', 'Hello')
+    content = TextMessage.last
+
+    message.save
+    message.destroy
+
+    refute TextMessage.find_by(id: content.id)
+  end
 end

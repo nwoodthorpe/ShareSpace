@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   belongs_to :room, optional: true
-  has_many :messages
+  has_many :messages, dependent: :destroy
 
   validates :name, presence: true, allow_blank: false, length: { maximum: 50 }
 

@@ -9,6 +9,8 @@ class Message < ApplicationRecord
 
   after_create_commit { MessageBroadcastJob.perform_later(self) }
 
+  before_destroy :destroy_content
+
   def set_content(type, content)
     message_content = type.constantize.factory(content)
 
@@ -31,5 +33,12 @@ class Message < ApplicationRecord
 
   rescue
     errors.add(:content_klass, "Content class is not valid")
+  end
+
+  private
+
+  def destroy_content
+    klass = self[:content_klass].constantize
+    klass.find_by(id: self[:content_id]).destroy
   end
 end
