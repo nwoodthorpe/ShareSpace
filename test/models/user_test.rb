@@ -34,4 +34,13 @@ class UserTest < ActiveSupport::TestCase
     refute user.save
     assert user.errors['name']
   end
+
+  test "when user is destroyed, it's messages are destroyed" do
+    user = User.create(name: "HELLO")
+    message = user.messages.create
+
+    user.destroy
+
+    refute Message.find_by(id: message.id)
+  end
 end
