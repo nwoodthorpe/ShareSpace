@@ -1,5 +1,7 @@
 # ShareSpace
 
+http://nwsharespace.herokuapp.com/
+
 An app for simple sharing of information between people.
 
 Created because I wanted to play with Rails' new web socket implementation, Action Cable
